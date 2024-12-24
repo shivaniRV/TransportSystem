@@ -33,8 +33,8 @@ const AsideDefault: FC = () => {
       {/* end::Aside menu */}
 
       {/* begin::Footer */}
-      <div className='aside-footer flex-column-auto py-5' id='kt_aside_footer'>
-        <a
+      {/* <div className='aside-footer flex-column-auto py-5' id='kt_aside_footer'> */}
+        {/* <a
           className='btn btn-custom btn-primary w-100'
           target='_blank'
           href={import.meta.env.VITE_APP_PREVIEW_DOCS_URL}
@@ -47,8 +47,8 @@ const AsideDefault: FC = () => {
           <span className=' btn-icon fs-2'>
             <KTIcon iconName='document' />
           </span>
-        </a>
-      </div>
+        </a> */}
+      {/* </div> */}
       {/* end::Footer */}
     </div>
   )

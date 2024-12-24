@@ -155,17 +155,17 @@ const HelpDrawer = () => {
                 {/* begin::Wrapper */}
                 <div className='d-flex flex-column me-2 me-lg-5'>
                   {/* begin::Title */}
-                  <Link
+                  {/* <Link
                     to='/builder'
                     className='text-gray-900 text-hover-primary fw-bolder fs-6 fs-lg-4 mb-1'
                   >
                     Layout Builder
-                  </Link>
+                  </Link> */}
                   {/* end::Title */}
                   {/* begin::Description */}
-                  <div className='text-muted fw-bold fs-7 fs-lg-6'>
+                  {/* <div className='text-muted fw-bold fs-7 fs-lg-6'>
                     Dynamically modify and preview layout
-                  </div>
+                  </div> */}
                   {/* end::Description */}
                 </div>
                 {/* end::Wrapper */}
