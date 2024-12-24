@@ -33,7 +33,7 @@ const Footer: FC = () => {
           </li>
           <li className='menu-item'>
             <a href='#' className='menu-link pe-0'>
-              Purchase
+              Query&FAQ
             </a>
           </li>
         </ul>

@@ -71,7 +71,7 @@ const Search: FC = () => {
         data-kt-search='true'
         ref={element}
       >
-        <form data-kt-search-element='form' className='w-100 position-relative' autoComplete='off'>
+        {/* <form data-kt-search-element='form' className='w-100 position-relative' autoComplete='off'>
           <KTIcon
             iconName='magnifier'
             className='fs-2 search-icon position-absolute top-50 translate-middle-y ms-4'
@@ -85,7 +85,7 @@ const Search: FC = () => {
             placeholder='Quick Search'
             data-kt-search-element='input'
           />
-        </form>
+        </form> */}
 
         <div
           data-kt-search-element='content'
