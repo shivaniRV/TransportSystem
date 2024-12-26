@@ -1,7 +1,7 @@
 import {useIntl} from 'react-intl'
 import {KTIcon} from '../../../helpers'
 import {AsideMenuItemWithSub} from './AsideMenuItemWithSub'
-import {AsideMenuItem} from './AsideMenuItem'
+import {AsideMenuItem} from '../aside/AsideMenuItem';
 export function AsideMenuMainUpdated() {
   const intl = useIntl()
   return (
