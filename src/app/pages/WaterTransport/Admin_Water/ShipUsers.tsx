@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Pagination from "./Pagination";
+import Pagination from "../../Pagination";
 // import AddUser from "./AddUser"; // A modal component for adding a new user
 
 // Example static data for users

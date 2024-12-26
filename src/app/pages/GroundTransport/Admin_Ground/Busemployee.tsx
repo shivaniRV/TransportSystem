@@ -1,16 +1,16 @@
 import React, { useState } from "react";
-import Pagination from "../Admin/Pagination";
-import AddEmployee from "./AddEmployee";
+import Pagination from "../../Pagination";
+// import AddBusEmployee from "./AddBusEmployee";
 
-// Example static data for employees
-const mockEmployees = [
-  { id: 1, name: "John Doe", age: 30, rank: "Manager", salary: 50000, active: true },
-  { id: 2, name: "Jane Smith", age: 25, rank: "Assistant", salary: 30000, active: false },
-  { id: 3, name: "Alice Johnson", age: 28, rank: "Supervisor", salary: 40000, active: true },
+// Example static data for bus employees
+const mockBusEmployees = [
+  { id: 1, name: "John Doe", age: 30, role: "Driver", salary: 50000, active: true },
+  { id: 2, name: "Jane Smith", age: 25, role: "Conductor", salary: 30000, active: false },
+  { id: 3, name: "Alice Johnson", age: 28, role: "Mechanic", salary: 40000, active: true },
 ];
 
-export const EmployeePage: React.FC = () => {
-  const [employees, setEmployees] = useState(mockEmployees);
+export const BusEmployeePage: React.FC = () => {
+  const [employees, setEmployees] = useState(mockBusEmployees);
   const [currentPage, setCurrentPage] = useState(1);
   const [entriesPerPage, setEntriesPerPage] = useState(5);
   const [search, setSearch] = useState("");
@@ -31,9 +31,6 @@ export const EmployeePage: React.FC = () => {
     setCurrentPage(1);
   };
 
-  
-  
-
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setSearch(e.target.value);
 
@@ -45,7 +42,7 @@ export const EmployeePage: React.FC = () => {
     );
   };
 
-  const handleAddEmployee = (newEmployee: { name: string; age: number; rank: string; salary: number; active: boolean }) => {
+  const handleAddEmployee = (newEmployee: { name: string; age: number; role: string; salary: number; active: boolean }) => {
     const newEmployeeWithId = { ...newEmployee, id: employees.length + 1 };
     setEmployees([...employees, newEmployeeWithId]);
   };
@@ -55,7 +52,7 @@ export const EmployeePage: React.FC = () => {
       {/* Header */}
       <div className="card-header border-0 pt-5">
         <h3 className="card-title align-items-start flex-column">
-          <span className="card-label fw-bold fs-3 mb-1">Employees</span>
+          <span className="card-label fw-bold fs-3 mb-1">Bus Employees</span>
           <span className="text-muted mt-1 fw-semibold fs-7">
             Total Employees: {filteredEmployees.length}
           </span>
@@ -65,14 +62,14 @@ export const EmployeePage: React.FC = () => {
             type="text"
             className="form-control border-1 border-primary border-opacity-25 mx-2 text-gray-800"
             style={{ width: "12rem" }}
-            placeholder="Search Employees"
+            placeholder="Search Bus Employees"
             value={search}
             onChange={handleSearchChange}
           />
 
           <div className="d-flex align-items-center">
             <span className="fs-7 fw-bolder text-gray-700 pe-4 text-nowrap d-none d-xxl-block">
-              Sort By:
+              Filter By Role:
             </span>
             <select
               className="form-select form-select-sm form-select-solid w-100px w-xxl-125px"
@@ -84,12 +81,9 @@ export const EmployeePage: React.FC = () => {
             >
               <option value=""></option>
               <option value="1">All</option>
-              <option value="2">Captin</option>
-              <option value="3">Seaman</option>
-              <option value="4">Officer</option>
-              <option value="5">Supervisor</option>
-              <option value="5">Technician</option>
-              <option value="5">Deckhand</option>
+              <option value="2">Driver</option>
+              <option value="3">Conductor</option>
+              <option value="4">Mechanic</option>
             </select>
           </div>
 
@@ -112,7 +106,7 @@ export const EmployeePage: React.FC = () => {
               <tr className="fw-bold fs-6 text-gray-800 border-bottom border-gray-200">
                 <th>Name</th>
                 <th>Age</th>
-                <th>Rank</th>
+                <th>Role</th>
                 <th>Salary</th>
                 <th>Actions</th>
               </tr>
@@ -124,14 +118,14 @@ export const EmployeePage: React.FC = () => {
                   <tr key={employee.id}>
                     <td>{employee.name}</td>
                     <td>{employee.age}</td>
-                    <td>{employee.rank}</td>
+                    <td>{employee.role}</td>
                     <td>{employee.salary}</td>
                     
                     <td className="text-center">
                     <div className="d-flex flex-row align-items-center">
                          <button
                       className="btn btn-icon btn-bg-light btn-sm me-1"
-                      //Viewbutton functionality
+                      // View button functionality
                     >
                       <i className="ki-duotone ki-eye fs-3 text-primary">
                         <span className="path1"></span>
@@ -139,7 +133,6 @@ export const EmployeePage: React.FC = () => {
                         <span className="path3"></span>
                       </i>
                     </button>
-
 
                         <button
                         type="button"
@@ -166,7 +159,6 @@ export const EmployeePage: React.FC = () => {
                         </i>
                       </button>
                       </div>
-                      
                     </td>
                   </tr>
                 ))}
@@ -188,7 +180,7 @@ export const EmployeePage: React.FC = () => {
 
       {/* Add Employee Modal */}
       {/* {showAddEmployeeModal && (
-        <AddEmployee
+        <AddBusEmployee
           onClose={() => setShowAddEmployeeModal(false)}
           onAdd={handleAddEmployee}
         />

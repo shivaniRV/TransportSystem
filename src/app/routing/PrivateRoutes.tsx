@@ -8,10 +8,16 @@ import { getCSSVariableValue } from "../../_metronic/assets/ts/_utils";
 import { WithChildren } from "../../_metronic/helpers";
 import BuilderPageWrapper from "../pages/layout-builder/BuilderPageWrapper";
 import HomeMain from "../pages/WaterTransport/Homepage/HomeMain";
-import SidebarPage from "../pages/WaterTransport/Admin/AdminDashboard";
-import {ShipsPage} from "../pages/WaterTransport/Admin/Ships";
-import { EmployeePage } from "../pages/WaterTransport/Admin/Employees";
-import { UsersPage } from "../pages/WaterTransport/Admin/ShipUsers";
+import SidebarPage from "../pages/WaterTransport/Admin_Water/AdminDashboard";
+import {ShipsPage} from "../pages/WaterTransport/Admin_Water/Ships";
+import { EmployeePage } from "../pages/WaterTransport/Admin_Water/Employees";
+import { UsersPage } from "../pages/WaterTransport/Admin_Water/ShipUsers";
+import { RevenuePage } from "../pages/WaterTransport/Admin_Water/Revenue";
+import { BusesPage } from "../pages/GroundTransport/Admin_Ground/Bus";
+import { BusEmployeePage } from "../pages/GroundTransport/Admin_Ground/Busemployee";
+import { BusRevenuePage } from "../pages/GroundTransport/Admin_Ground/BusRevenu";
+import { PlansPage } from "../pages/AirTransport/Admin_Air/Plane";
+
 
 const PrivateRoutes = () => {
   const ProfilePage = lazy(() => import("../modules/profile/ProfilePage"));
@@ -50,9 +56,15 @@ const PrivateRoutes = () => {
         /> */}
         <Route path="/home" element={<HomeMain />} />
         <Route path="/AdminDashboard"element={<SidebarPage/>}></Route>
-        <Route path="Ships" element ={<ShipsPage/>}></Route>
-        <Route path='Employees' element={<EmployeePage/>}></Route>
-        <Route path='ShipUsers' element={<UsersPage/>}></Route>
+        <Route path="Water/Ships" element ={<ShipsPage/>}></Route>
+        <Route path='Water/Employees' element={<EmployeePage/>}></Route>
+        <Route path='Water/ShipUsers' element={<UsersPage/>}></Route>
+        <Route path="Water/Revenue" element={<RevenuePage/>}></Route>
+        <Route path="Ground/Bus" element={<BusesPage/>}></Route>
+        <Route path="Ground/BusEmployee" element={<BusEmployeePage/>}></Route>
+        <Route path="Ground/BusRevenue" element={<BusRevenuePage/>}></Route> 
+        <Route path="Air/Plan" element={<PlansPage/>}></Route> 
+
 
         {/* <Route
           path="crafted/pages/wizards/*"

@@ -1,25 +1,24 @@
 import React, { useState } from "react";
-import Pagination from "../Admin/Pagination";
-import AddShip from "./AddShip";
+import Pagination from "../../Pagination";
+import AddEmployee from "./AddEmployee";
 
-// Example static data for ships
-const mockShips = [
-  { id: 1, name: "Ship A", type: "Cargo", capacity: 3000, status: "Active", available: true },
-  { id: 2, name: "Ship B", type: "Passenger", capacity: 1500, status: "Inactive", available: false },
-  { id: 3, name: "Ship C", type: "Cargo", capacity: 2500, status: "Active", available: true },
+// Example static data for employees
+const mockEmployees = [
+  { id: 1, name: "John Doe", age: 30, rank: "Manager", salary: 50000, active: true },
+  { id: 2, name: "Jane Smith", age: 25, rank: "Assistant", salary: 30000, active: false },
+  { id: 3, name: "Alice Johnson", age: 28, rank: "Supervisor", salary: 40000, active: true },
 ];
 
-export const ShipsPage: React.FC = () => {
-  const [ships, setShips] = useState(mockShips);
+export const EmployeePage: React.FC = () => {
+  const [employees, setEmployees] = useState(mockEmployees);
   const [currentPage, setCurrentPage] = useState(1);
   const [entriesPerPage, setEntriesPerPage] = useState(5);
   const [search, setSearch] = useState("");
-  const [showAddShipModal, setShowAddShipModal] = useState(false); 
+  const [showAddEmployeeModal, setShowAddEmployeeModal] = useState(false);
   const [status, setStatus] = useState("");
 
-
-  const filteredShips = ships.filter((ship) =>
-    ship.name.toLowerCase().includes(search.toLowerCase())
+  const filteredEmployees = employees.filter((employee) =>
+    employee.name.toLowerCase().includes(search.toLowerCase())
   );
 
   const handlePageChange = (page: number) => setCurrentPage(page);
@@ -32,21 +31,23 @@ export const ShipsPage: React.FC = () => {
     setCurrentPage(1);
   };
 
+  
+  
+
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setSearch(e.target.value);
 
-  const toggleAvailability = (id: number) => {
-    setShips(
-      ships.map((ship) =>
-        ship.id === id ? { ...ship, available: !ship.available } : ship
+  const toggleActiveStatus = (id: number) => {
+    setEmployees(
+      employees.map((employee) =>
+        employee.id === id ? { ...employee, active: !employee.active } : employee
       )
     );
   };
 
-  // Define handleAddShip to handle adding a new ship
-  const handleAddShip = (newShip: { name: string; type: string; capacity: number; status: string; available: boolean }) => {
-    const newShipWithId = { ...newShip, id: ships.length + 1 }; 
-    setShips([...ships, newShipWithId]); 
+  const handleAddEmployee = (newEmployee: { name: string; age: number; rank: string; salary: number; active: boolean }) => {
+    const newEmployeeWithId = { ...newEmployee, id: employees.length + 1 };
+    setEmployees([...employees, newEmployeeWithId]);
   };
 
   return (
@@ -54,9 +55,9 @@ export const ShipsPage: React.FC = () => {
       {/* Header */}
       <div className="card-header border-0 pt-5">
         <h3 className="card-title align-items-start flex-column">
-          <span className="card-label fw-bold fs-3 mb-1">Ships</span>
+          <span className="card-label fw-bold fs-3 mb-1">Employees</span>
           <span className="text-muted mt-1 fw-semibold fs-7">
-            Total Ships: {filteredShips.length}
+            Total Employees: {filteredEmployees.length}
           </span>
         </h3>
         <div className="card-toolbar d-flex flex-end">
@@ -64,51 +65,41 @@ export const ShipsPage: React.FC = () => {
             type="text"
             className="form-control border-1 border-primary border-opacity-25 mx-2 text-gray-800"
             style={{ width: "12rem" }}
-            placeholder="Search Ships"
+            placeholder="Search Employees"
             value={search}
             onChange={handleSearchChange}
           />
-          {/* <button
-            type="button"
-            className="btn btn-light-primary border-0 rounded mx-2"
-          >
-            <i className="fs-2 bi bi-funnel" />
-            Filter
-          </button> */}
 
-<div className='d-flex align-items-center'>
-            {/* begin::Label */}
-            <span className='fs-7 fw-bolder text-gray-700 pe-4 text-nowrap d-none d-xxl-block'>
+          <div className="d-flex align-items-center">
+            <span className="fs-7 fw-bolder text-gray-700 pe-4 text-nowrap d-none d-xxl-block">
               Sort By:
             </span>
-            {/* end::Label */}
-
-            {/* begin::Select */}
             <select
-              className='form-select form-select-sm form-select-solid w-100px w-xxl-125px'
-              data-control='select2'
-              data-placeholder='All'
-              data-hide-search='true'
+              className="form-select form-select-sm form-select-solid w-100px w-xxl-125px"
+              data-control="select2"
+              data-placeholder="All"
+              data-hide-search="true"
               defaultValue={status}
               onChange={(e) => setStatus(e.target.value)}
             >
-              <option value=''></option>
-              <option value='1'>All</option>
-              <option value='2'>Avaible</option>
-              <option value='3'>Active</option>
-              <option value='3'>Cargo</option>
-              <option value='3'>Passenger</option>
+              <option value=""></option>
+              <option value="1">All</option>
+              <option value="2">Captin</option>
+              <option value="3">Seaman</option>
+              <option value="4">Officer</option>
+              <option value="5">Supervisor</option>
+              <option value="5">Technician</option>
+              <option value="5">Deckhand</option>
             </select>
-            {/* end::Select  */}
           </div>
 
           <button
             type="button"
             className="btn btn-light-primary border-0 rounded mx-2"
-            onClick={() => setShowAddShipModal(true)} // Open the modal
+            onClick={() => setShowAddEmployeeModal(true)}
           >
             <i className="fs-2 bi bi-plus" />
-            Add New Ship
+            Add New Employee
           </button>
         </div>
       </div>
@@ -120,31 +111,24 @@ export const ShipsPage: React.FC = () => {
             <thead>
               <tr className="fw-bold fs-6 text-gray-800 border-bottom border-gray-200">
                 <th>Name</th>
-                <th>Type</th>
-                <th>Capacity</th>
-                <th>Status</th>
-                <th>Availability</th>
+                <th>Age</th>
+                <th>Rank</th>
+                <th>Salary</th>
                 <th>Actions</th>
               </tr>
             </thead>
             <tbody>
-              {filteredShips
+              {filteredEmployees
                 .slice((currentPage - 1) * entriesPerPage, currentPage * entriesPerPage)
-                .map((ship) => (
-                  <tr key={ship.id}>
-                    <td>{ship.name}</td>
-                    <td>{ship.type}</td>
-                    <td>{ship.capacity}</td>
-                    <td>{ship.status}</td>
-                    <td>
-                      <input
-                        type="checkbox"
-                        checked={ship.available}
-                        onChange={() => toggleAvailability(ship.id)}
-                      />
-                    </td>
+                .map((employee) => (
+                  <tr key={employee.id}>
+                    <td>{employee.name}</td>
+                    <td>{employee.age}</td>
+                    <td>{employee.rank}</td>
+                    <td>{employee.salary}</td>
+                    
                     <td className="text-center">
-                      <div className="d-flex flex-row align-items-center">
+                    <div className="d-flex flex-row align-items-center">
                          <button
                       className="btn btn-icon btn-bg-light btn-sm me-1"
                       //Viewbutton functionality
@@ -182,6 +166,7 @@ export const ShipsPage: React.FC = () => {
                         </i>
                       </button>
                       </div>
+                      
                     </td>
                   </tr>
                 ))}
@@ -194,20 +179,20 @@ export const ShipsPage: React.FC = () => {
       <div className="card-footer">
         <Pagination
           currentPage={currentPage}
-          totalPages={Math.ceil(filteredShips.length / entriesPerPage)}
+          totalPages={Math.ceil(filteredEmployees.length / entriesPerPage)}
           onPageChange={handlePageChange}
           entriesPerPage={entriesPerPage}
           onEntriesPerPageChange={handleEntriesPerPageChange}
         />
       </div>
 
-      {/* Add Ship Modal */}
-      {showAddShipModal && (
-        <AddShip
-          onClose={() => setShowAddShipModal(false)} 
-          onAdd={handleAddShip} 
+      {/* Add Employee Modal */}
+      {/* {showAddEmployeeModal && (
+        <AddEmployee
+          onClose={() => setShowAddEmployeeModal(false)}
+          onAdd={handleAddEmployee}
         />
-      )}
+      )} */}
     </div>
   );
 };
