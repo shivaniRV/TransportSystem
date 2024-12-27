@@ -33,9 +33,9 @@ const AddEmployee: React.FC<AddEmployeeProps> = ({ onClose, onAdd }) => {
 
   const handleAddEmployee = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Add the new employee to the employee list
+   
     onAdd(newEmployee);
-    onClose(); // Close the modal
+    onClose(); 
   };
 
   return (

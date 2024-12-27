@@ -20,7 +20,7 @@ const AddShip: React.FC<AddShipProps> = ({ onClose, onAdd }) => {
     name: "",
     type: "",
     capacity: 0,
-    status: "Active", // Default to Active
+    status: "Active",            // Default to Active
     available: true,
   });
 
@@ -33,9 +33,8 @@ const AddShip: React.FC<AddShipProps> = ({ onClose, onAdd }) => {
 
   const handleAddShip = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Add the new ship to the ships list
     onAdd(newShip);
-    onClose(); // Close the modal
+    onClose(); 
   };
 
   return (

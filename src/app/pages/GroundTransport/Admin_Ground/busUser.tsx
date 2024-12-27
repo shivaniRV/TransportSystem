@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import Pagination from "../../Pagination";
-// import AddShipUser from "./AddShipUser";
+// import AddBusUser from "./AddBusUser";
 
-// Example static data for ship users
-const mockShipUsers = [
-  { id: 1, name: "John Doe", age: 38, role: "Captain", active: true },
-  { id: 2, name: "Jane Smith", age: 34, role: "Crew Member", active: false },
-  { id: 3, name: "William Brown", age: 29, role: "Deckhand", active: true },
+// Example static data for bus users
+const mockBusUsers = [
+  { id: 1, name: "Alice Green", age: 32, role: "Passenger", active: true },
+  { id: 2, name: "Bob Brown", age: 45, role: "Passenger", active: false },
+  { id: 3, name: "Charlie Blue", age: 29, role: "Driver", active: true },
 ];
 
-export const ShipUserPage: React.FC = () => {
-  const [users, setUsers] = useState(mockShipUsers);
+export const BusUserPage: React.FC = () => {
+  const [users, setUsers] = useState(mockBusUsers);
   const [currentPage, setCurrentPage] = useState(1);
   const [entriesPerPage, setEntriesPerPage] = useState(5);
   const [search, setSearch] = useState("");
@@ -52,7 +52,7 @@ export const ShipUserPage: React.FC = () => {
       {/* Header */}
       <div className="card-header border-0 pt-5">
         <h3 className="card-title align-items-start flex-column">
-          <span className="card-label fw-bold fs-3 mb-1">Ship Users</span>
+          <span className="card-label fw-bold fs-3 mb-1">Bus Users</span>
           <span className="text-muted mt-1 fw-semibold fs-7">
             Total Users: {filteredUsers.length}
           </span>
@@ -62,7 +62,7 @@ export const ShipUserPage: React.FC = () => {
             type="text"
             className="form-control border-1 border-primary border-opacity-25 mx-2 text-gray-800"
             style={{ width: "12rem" }}
-            placeholder="Search Ship Users"
+            placeholder="Search Bus Users"
             value={search}
             onChange={handleSearchChange}
           />
@@ -81,9 +81,8 @@ export const ShipUserPage: React.FC = () => {
             >
               <option value=""></option>
               <option value="1">All</option>
-              <option value="2">Captain</option>
-              <option value="3">Crew Member</option>
-              <option value="4">Deckhand</option>
+              <option value="2">Passenger</option>
+              <option value="3">Driver</option>
             </select>
           </div>
 
@@ -177,7 +176,7 @@ export const ShipUserPage: React.FC = () => {
 
       {/* Add User Modal */}
       {/* {showAddUserModal && (
-        <AddShipUser
+        <AddBusUser
           onClose={() => setShowAddUserModal(false)}
           onAdd={handleAddUser}
         />

@@ -11,12 +11,24 @@ import HomeMain from "../pages/WaterTransport/Homepage/HomeMain";
 import SidebarPage from "../pages/WaterTransport/Admin_Water/AdminDashboard";
 import {ShipsPage} from "../pages/WaterTransport/Admin_Water/Ships";
 import { EmployeePage } from "../pages/WaterTransport/Admin_Water/Employees";
-import { UsersPage } from "../pages/WaterTransport/Admin_Water/ShipUsers";
 import { RevenuePage } from "../pages/WaterTransport/Admin_Water/Revenue";
 import { BusesPage } from "../pages/GroundTransport/Admin_Ground/Bus";
 import { BusEmployeePage } from "../pages/GroundTransport/Admin_Ground/Busemployee";
 import { BusRevenuePage } from "../pages/GroundTransport/Admin_Ground/BusRevenu";
-import { PlansPage } from "../pages/AirTransport/Admin_Air/Plane";
+import { PlansPage } from "../pages/AirTransport/Admin_Air/Aircraft";
+import { FAQPage } from "../pages/WaterTransport/Admin_Water/FAQ";
+import AdminDashboard_G from "../pages/GroundTransport/Admin_Ground/AdminDashboard_G";
+import { FAQGroudPage } from "../pages/GroundTransport/Admin_Ground/FAQGround";
+import { AircraftRevenuePage } from "../pages/AirTransport/Admin_Air/AirRevenue";
+import { AircraftFAQPage} from "../pages/AirTransport/Admin_Air/AirFAQ";
+import { BusUserPage } from "../pages/GroundTransport/Admin_Ground/busUser";
+import { AirEmployeePage } from "../pages/AirTransport/Admin_Air/AirEmployee";
+import { AirUserPage } from "../pages/AirTransport/Admin_Air/Airuser";
+
+import { BusBookingPage } from "../pages/GroundTransport/Admin_Ground/busbookig";
+import { ShipBookingPage } from "../pages/WaterTransport/Admin_Water/Shipbooking";
+import { AirBookingPage } from "../pages/AirTransport/Admin_Air/Airbooking";
+// import  {ShipUserPage} from "../pages/WaterTransport/Admin_Water/ShipUsers";
 
 
 const PrivateRoutes = () => {
@@ -58,12 +70,25 @@ const PrivateRoutes = () => {
         <Route path="/AdminDashboard"element={<SidebarPage/>}></Route>
         <Route path="Water/Ships" element ={<ShipsPage/>}></Route>
         <Route path='Water/Employees' element={<EmployeePage/>}></Route>
-        <Route path='Water/ShipUsers' element={<UsersPage/>}></Route>
         <Route path="Water/Revenue" element={<RevenuePage/>}></Route>
+        {/* <Route path="Water/Shipuser" element={<ShipUserPage/>}></Route> */}
+        <Route  path="Water/booking" element={<ShipBookingPage/>}></Route>
+        <Route path="Water/FAQ" element={<FAQPage/>}></Route>
+        <Route path="Ground/AdminDashboard" element={<AdminDashboard_G/>}></Route>
         <Route path="Ground/Bus" element={<BusesPage/>}></Route>
         <Route path="Ground/BusEmployee" element={<BusEmployeePage/>}></Route>
         <Route path="Ground/BusRevenue" element={<BusRevenuePage/>}></Route> 
-        <Route path="Air/Plan" element={<PlansPage/>}></Route> 
+        <Route path="Ground/bususer" element={<BusUserPage/>}></Route>
+        <Route path="Ground/busbooking" element={<BusBookingPage/>}></Route>
+        <Route path="Ground/FAQ" element={<FAQGroudPage/>}></Route>
+        <Route path="Air/Aircrafts" element={<PlansPage/>}></Route> 
+        <Route path="Air/Revenue" element={<AircraftRevenuePage/>}></Route> 
+        <Route path="Air/FAQ" element={<AircraftFAQPage/>}></Route>
+        <Route path="Air/Employee" element={<AirEmployeePage/>}></Route>
+        <Route path="Air/Users" element={<AirUserPage/>}></Route>
+        {/* <Route path="Air/booking" element={<AirBookingPage/>}></Route> */}
+       
+
 
 
         {/* <Route

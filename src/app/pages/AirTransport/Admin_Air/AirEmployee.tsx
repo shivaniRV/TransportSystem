@@ -1,24 +1,26 @@
 import React, { useState } from "react";
 import Pagination from "../../Pagination";
-// import AddShipUser from "./AddShipUser";
+// import AddAirEmployee from "./AddAirEmployee";
 
-// Example static data for ship users
-const mockShipUsers = [
-  { id: 1, name: "John Doe", age: 38, role: "Captain", active: true },
-  { id: 2, name: "Jane Smith", age: 34, role: "Crew Member", active: false },
-  { id: 3, name: "William Brown", age: 29, role: "Deckhand", active: true },
+// Example static data for air employees
+const mockAirEmployees = [
+  { id: 1, name: "Emily Davis", age: 35, role: "Pilot", salary: 80000, active: true },
+  { id: 2, name: "Michael Brown", age: 28, role: "Flight Attendant", salary: 40000, active: true },
+  { id: 3, name: "Sarah Wilson", age: 32, role: "Ground Crew", salary: 35000, active: false },
+  { id: 4, name: "David Lee", age: 45, role: "Pilot", salary: 90000, active: true },
 ];
 
-export const ShipUserPage: React.FC = () => {
-  const [users, setUsers] = useState(mockShipUsers);
+export const AirEmployeePage: React.FC = () => {
+  const [employees, setEmployees] = useState(mockAirEmployees);
   const [currentPage, setCurrentPage] = useState(1);
   const [entriesPerPage, setEntriesPerPage] = useState(5);
   const [search, setSearch] = useState("");
-  const [showAddUserModal, setShowAddUserModal] = useState(false);
-  const [status, setStatus] = useState("");
+  const [showAddEmployeeModal, setShowAddEmployeeModal] = useState(false);
+  const [roleFilter, setRoleFilter] = useState("");
 
-  const filteredUsers = users.filter((user) =>
-    user.name.toLowerCase().includes(search.toLowerCase())
+  const filteredEmployees = employees.filter((employee) =>
+    employee.name.toLowerCase().includes(search.toLowerCase()) &&
+    (roleFilter ? employee.role === roleFilter : true)
   );
 
   const handlePageChange = (page: number) => setCurrentPage(page);
@@ -34,17 +36,20 @@ export const ShipUserPage: React.FC = () => {
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setSearch(e.target.value);
 
+  const handleRoleFilterChange = (e: React.ChangeEvent<HTMLSelectElement>) =>
+    setRoleFilter(e.target.value);
+
   const toggleActiveStatus = (id: number) => {
-    setUsers(
-      users.map((user) =>
-        user.id === id ? { ...user, active: !user.active } : user
+    setEmployees(
+      employees.map((employee) =>
+        employee.id === id ? { ...employee, active: !employee.active } : employee
       )
     );
   };
 
-  const handleAddUser = (newUser: { name: string; age: number; role: string; active: boolean }) => {
-    const newUserWithId = { ...newUser, id: users.length + 1 };
-    setUsers([...users, newUserWithId]);
+  const handleAddEmployee = (newEmployee: { name: string; age: number; role: string; salary: number; active: boolean }) => {
+    const newEmployeeWithId = { ...newEmployee, id: employees.length + 1 };
+    setEmployees([...employees, newEmployeeWithId]);
   };
 
   return (
@@ -52,9 +57,9 @@ export const ShipUserPage: React.FC = () => {
       {/* Header */}
       <div className="card-header border-0 pt-5">
         <h3 className="card-title align-items-start flex-column">
-          <span className="card-label fw-bold fs-3 mb-1">Ship Users</span>
+          <span className="card-label fw-bold fs-3 mb-1">Air Employees</span>
           <span className="text-muted mt-1 fw-semibold fs-7">
-            Total Users: {filteredUsers.length}
+            Total Employees: {filteredEmployees.length}
           </span>
         </h3>
         <div className="card-toolbar d-flex flex-end">
@@ -62,7 +67,7 @@ export const ShipUserPage: React.FC = () => {
             type="text"
             className="form-control border-1 border-primary border-opacity-25 mx-2 text-gray-800"
             style={{ width: "12rem" }}
-            placeholder="Search Ship Users"
+            placeholder="Search Air Employees"
             value={search}
             onChange={handleSearchChange}
           />
@@ -76,24 +81,23 @@ export const ShipUserPage: React.FC = () => {
               data-control="select2"
               data-placeholder="All"
               data-hide-search="true"
-              defaultValue={status}
-              onChange={(e) => setStatus(e.target.value)}
+              value={roleFilter}
+              onChange={handleRoleFilterChange}
             >
-              <option value=""></option>
-              <option value="1">All</option>
-              <option value="2">Captain</option>
-              <option value="3">Crew Member</option>
-              <option value="4">Deckhand</option>
+              <option value="">All</option>
+              <option value="Pilot">Pilot</option>
+              <option value="Flight Attendant">Flight Attendant</option>
+              <option value="Ground Crew">Ground Crew</option>
             </select>
           </div>
 
           <button
             type="button"
             className="btn btn-light-primary border-0 rounded mx-2"
-            onClick={() => setShowAddUserModal(true)}
+            onClick={() => setShowAddEmployeeModal(true)}
           >
             <i className="fs-2 bi bi-plus" />
-            Add New User
+            Add New Employee
           </button>
         </div>
       </div>
@@ -107,17 +111,20 @@ export const ShipUserPage: React.FC = () => {
                 <th>Name</th>
                 <th>Age</th>
                 <th>Role</th>
+                <th>Salary</th>
                 <th>Actions</th>
               </tr>
             </thead>
             <tbody>
-              {filteredUsers
+              {filteredEmployees
                 .slice((currentPage - 1) * entriesPerPage, currentPage * entriesPerPage)
-                .map((user) => (
-                  <tr key={user.id}>
-                    <td>{user.name}</td>
-                    <td>{user.age}</td>
-                    <td>{user.role}</td>
+                .map((employee) => (
+                  <tr key={employee.id}>
+                    <td>{employee.name}</td>
+                    <td>{employee.age}</td>
+                    <td>{employee.role}</td>
+                    <td>{employee.salary}</td>
+
                     <td className="text-center">
                       <div className="d-flex flex-row align-items-center">
                         <button
@@ -168,18 +175,18 @@ export const ShipUserPage: React.FC = () => {
       <div className="card-footer">
         <Pagination
           currentPage={currentPage}
-          totalPages={Math.ceil(filteredUsers.length / entriesPerPage)}
+          totalPages={Math.ceil(filteredEmployees.length / entriesPerPage)}
           onPageChange={handlePageChange}
           entriesPerPage={entriesPerPage}
           onEntriesPerPageChange={handleEntriesPerPageChange}
         />
       </div>
 
-      {/* Add User Modal */}
-      {/* {showAddUserModal && (
-        <AddShipUser
-          onClose={() => setShowAddUserModal(false)}
-          onAdd={handleAddUser}
+      {/* Add Employee Modal */}
+      {/* {showAddEmployeeModal && (
+        <AddAirEmployee
+          onClose={() => setShowAddEmployeeModal(false)}
+          onAdd={handleAddEmployee}
         />
       )} */}
     </div>
