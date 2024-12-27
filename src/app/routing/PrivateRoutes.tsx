@@ -7,7 +7,7 @@ import { MenuTestPage } from "../pages/MenuTestPage";
 import { getCSSVariableValue } from "../../_metronic/assets/ts/_utils";
 import { WithChildren } from "../../_metronic/helpers";
 import BuilderPageWrapper from "../pages/layout-builder/BuilderPageWrapper";
-import HomeMain from "../pages/WaterTransport/Homepage/HomeMain";
+import HomeMain from "../pages/WaterTransport/Userinterface/HomeMain";
 import SidebarPage from "../pages/WaterTransport/Admin_Water/AdminDashboard";
 import {ShipsPage} from "../pages/WaterTransport/Admin_Water/Ships";
 import { EmployeePage } from "../pages/WaterTransport/Admin_Water/Employees";
@@ -27,7 +27,9 @@ import { AirUserPage } from "../pages/AirTransport/Admin_Air/Airuser";
 
 import { BusBookingPage } from "../pages/GroundTransport/Admin_Ground/busbookig";
 import { ShipBookingPage } from "../pages/WaterTransport/Admin_Water/Shipbooking";
-import { AirBookingPage } from "../pages/AirTransport/Admin_Air/Airbooking";
+import BusBooking from "../pages/GroundTransport/UserUI_G/Homepage";
+import BusSearch from "../pages/GroundTransport/UserUI_G/BusSearch";
+// import { AirBookingPage } from "../pages/AirTransport/Admin_Air/Airbooking";
 // import  {ShipUserPage} from "../pages/WaterTransport/Admin_Water/ShipUsers";
 
 
@@ -67,13 +69,15 @@ const PrivateRoutes = () => {
           }
         /> */}
         <Route path="/home" element={<HomeMain />} />
-        <Route path="/AdminDashboard"element={<SidebarPage/>}></Route>
+        <Route path="/Water/Admindashboard"element={<SidebarPage/>}></Route>
+        <Route path="/BusSearch" element={<BusSearch/>}></Route>
         <Route path="Water/Ships" element ={<ShipsPage/>}></Route>
         <Route path='Water/Employees' element={<EmployeePage/>}></Route>
         <Route path="Water/Revenue" element={<RevenuePage/>}></Route>
         {/* <Route path="Water/Shipuser" element={<ShipUserPage/>}></Route> */}
         <Route  path="Water/booking" element={<ShipBookingPage/>}></Route>
         <Route path="Water/FAQ" element={<FAQPage/>}></Route>
+        <Route path="Ground/homepage" element={<BusBooking/>}></Route>
         <Route path="Ground/AdminDashboard" element={<AdminDashboard_G/>}></Route>
         <Route path="Ground/Bus" element={<BusesPage/>}></Route>
         <Route path="Ground/BusEmployee" element={<BusEmployeePage/>}></Route>
@@ -86,7 +90,7 @@ const PrivateRoutes = () => {
         <Route path="Air/FAQ" element={<AircraftFAQPage/>}></Route>
         <Route path="Air/Employee" element={<AirEmployeePage/>}></Route>
         <Route path="Air/Users" element={<AirUserPage/>}></Route>
-        {/* <Route path="Air/booking" element={<AirBookingPage/>}></Route> */}
+        {/* <Route path=" Air/Booking" element={<AirBookingPage/>}></Route> */}
        
 
 
