@@ -8,6 +8,17 @@ import { getCSSVariableValue } from "../../_metronic/assets/ts/_utils";
 import { WithChildren } from "../../_metronic/helpers";
 import BuilderPageWrapper from "../pages/layout-builder/BuilderPageWrapper";
 import HomeMain from "../pages/WaterTransport/Homepage/HomeMain";
+import SidebarPage from "../pages/WaterTransport/Admin_Water/AdminDashboard";
+import {ShipsPage} from "../pages/WaterTransport/Admin_Water/Ships";
+import { EmployeePage } from "../pages/WaterTransport/Admin_Water/Employees";
+import { UsersPage } from "../pages/WaterTransport/Admin_Water/ShipUsers";
+import { RevenuePage } from "../pages/WaterTransport/Admin_Water/Revenue";
+import { BusesPage } from "../pages/GroundTransport/Admin_Ground/Bus";
+import { BusEmployeePage } from "../pages/GroundTransport/Admin_Ground/Busemployee";
+import { BusRevenuePage } from "../pages/GroundTransport/Admin_Ground/BusRevenu";
+import { PlansPage } from "../pages/AirTransport/Admin_Air/Plane";
+
+
 const PrivateRoutes = () => {
   const ProfilePage = lazy(() => import("../modules/profile/ProfilePage"));
   const WizardsPage = lazy(() => import("../modules/wizards/WizardsPage"));
@@ -25,66 +36,77 @@ const PrivateRoutes = () => {
         <Route path="auth/*" element={<Navigate to="/dashboard" />} />
         {/* Pages */}
         <Route path="dashboard" element={<DashboardWrapper />} />
-        <Route
+        {/* <Route
           path="builder"
           element={
             <SuspensedView>
               <BuilderPageWrapper />
             </SuspensedView>
           }
-        />
-        <Route path="menu-test" element={<MenuTestPage />} />
+        /> */}
+        {/* <Route path="menu-test" element={<MenuTestPage />} /> */}
         {/* Lazy Modules */}
-        <Route
+        {/* <Route
           path="crafted/pages/profile/*"
           element={
             <SuspensedView>
               <ProfilePage />
             </SuspensedView>
           }
-        />
+        /> */}
         <Route path="/home" element={<HomeMain />} />
-        <Route
+        <Route path="/AdminDashboard"element={<SidebarPage/>}></Route>
+        <Route path="Water/Ships" element ={<ShipsPage/>}></Route>
+        <Route path='Water/Employees' element={<EmployeePage/>}></Route>
+        <Route path='Water/ShipUsers' element={<UsersPage/>}></Route>
+        <Route path="Water/Revenue" element={<RevenuePage/>}></Route>
+        <Route path="Ground/Bus" element={<BusesPage/>}></Route>
+        <Route path="Ground/BusEmployee" element={<BusEmployeePage/>}></Route>
+        <Route path="Ground/BusRevenue" element={<BusRevenuePage/>}></Route> 
+        <Route path="Air/Plan" element={<PlansPage/>}></Route> 
+
+
+        {/* <Route
           path="crafted/pages/wizards/*"
           element={
             <SuspensedView>
               <WizardsPage />
             </SuspensedView>
           }
-        />
+        /> */}
 
-        <Route
+        {/* <Route
           path="crafted/widgets/*"
           element={
             <SuspensedView>
               <WidgetsPage />
             </SuspensedView>
           }
-        />
-        <Route
+        /> */}
+        {/* <Route
           path="crafted/account/*"
           element={
             <SuspensedView>
               <AccountPage />
             </SuspensedView>
           }
-        />
-        <Route
+        /> */}
+        {/* <Route
           path="apps/chat/*"
           element={
             <SuspensedView>
               <ChatPage />
             </SuspensedView>
           }
-        />
-        <Route
+        /> */}
+        {/* <Route
           path="apps/user-management/*"
           element={
             <SuspensedView>
               <UsersPage />
             </SuspensedView>
           }
-        />
+        /> */}
         {/* Page Not Found */}
         <Route path="*" element={<Navigate to="/error/404" />} />
       </Route>

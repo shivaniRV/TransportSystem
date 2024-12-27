@@ -1,36 +1,31 @@
 import {useIntl} from 'react-intl'
 import {KTIcon} from '../../../helpers'
 import {AsideMenuItemWithSub} from './AsideMenuItemWithSub'
-import {AsideMenuItem} from './AsideMenuItem'
+import {AsideMenuItem} from '../aside/AsideMenuItem';
 export function AsideMenuMainUpdated() {
   const intl = useIntl()
   return (
     <>
       <AsideMenuItem
-        to='/home'
+        to='/AdminDashboard'
         icon='element-11'
-        title="Home"
+        title="Dashboard"
       />
       <div className='menu-item'>
         <div className='menu-content pt-8 pb-2'>
           {/* <span className='menu-section text-muted text-uppercase fs-8 ls-1'>Jobs and Applicants</span> */}
         </div>
       </div>
-      <AsideMenuItem to='/job-management' icon='element-11' title="Job Management"/>
-      <AsideMenuItem to='applicants' icon='element-11' title="Applicants" />
+      <AsideMenuItem to='/job-management' icon='element-11' title="Ships"/>
+      <AsideMenuItem to='applicants' icon='element-11' title="Users" />
       <div className='menu-item'>
-        <div className='menu-content pt-8 pb-2'>
+        {/* <div className='menu-content pt-8 pb-2'>
           <span className='menu-section text-muted text-uppercase fs-8 ls-1'>Quiz</span>
-        </div>
+        </div> */}
       </div>
-      <AsideMenuItem to='/quiz/questions' icon='shield-tick' title='Quiz Questions' />
-      <AsideMenuItem to='/quiz/quizzes' icon='shield-tick' title='Quizzes' />
-      <div className='menu-item'>
-        <div className='menu-content pt-8 pb-2'>
-          <span className='menu-section text-muted text-uppercase fs-8 ls-1'>User and Roles</span>
-        </div>
-      </div>
-      <AsideMenuItem to='user/user-management' icon='shield-tick' title='User Management' />
+      <AsideMenuItem to='/quiz/questions' icon='element-11'title='Employees' />
+      <AsideMenuItem to='/quiz/quizzes' icon='element-11' title='Revenue' />
+      <AsideMenuItem to='user/user-management' icon='element-11' title='FAQ & Queries' />
       
       
     </>
