@@ -20,7 +20,7 @@ const AddShip: React.FC<AddShipProps> = ({ onClose, onAdd }) => {
     name: "",
     type: "",
     capacity: 0,
-    status: "Active",            // Default to Active
+    status: "Active", // Default to Active
     available: true,
   });
 
@@ -34,7 +34,7 @@ const AddShip: React.FC<AddShipProps> = ({ onClose, onAdd }) => {
   const handleAddShip = async (e: React.FormEvent) => {
     e.preventDefault();
     onAdd(newShip);
-    onClose(); 
+    onClose();
   };
 
   return (
@@ -43,7 +43,11 @@ const AddShip: React.FC<AddShipProps> = ({ onClose, onAdd }) => {
         <div className="modal-content">
           <div className="modal-header">
             <h5 className="modal-title">Add New Ship</h5>
-            <button type="button" className="btn-close" onClick={onClose}></button>
+            <button
+              type="button"
+              className="btn-close"
+              onClick={onClose}
+            ></button>
           </div>
           <div className="modal-body">
             <form onSubmit={handleAddShip}>
