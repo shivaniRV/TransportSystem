@@ -198,7 +198,7 @@ const SummaryPage: React.FC = () => {
             <button
               className={`btn ${
                 selectedPaymentMethod === "phonepe"
-                  ? "btn-success"
+                  ? "btn-primary"
                   : "btn-light"
               }`}
               onClick={() => setSelectedPaymentMethod("phonepe")}
@@ -207,7 +207,7 @@ const SummaryPage: React.FC = () => {
             </button>
             <button
               className={`btn ${
-                selectedPaymentMethod === "upi" ? "btn-success" : "btn-light"
+                selectedPaymentMethod === "upi" ? "btn-primary" : "btn-light"
               }`}
               onClick={() => setSelectedPaymentMethod("upi")}
             >
@@ -216,7 +216,7 @@ const SummaryPage: React.FC = () => {
             <button
               className={`btn ${
                 selectedPaymentMethod === "creditcard"
-                  ? "btn-success"
+                  ? "btn-primary"
                   : "btn-light"
               }`}
               onClick={() => setSelectedPaymentMethod("creditcard")}

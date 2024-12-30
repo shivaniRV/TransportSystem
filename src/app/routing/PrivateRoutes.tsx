@@ -38,6 +38,8 @@ import ShipDetailsPage from "../pages/WaterTransport/Userinterface/ShipDetails";
 
 import SummaryPage from "../pages/WaterTransport/Userinterface/Summary";
 import SearchAir from "../pages/AirTransport/UserUI_A/SearchAir";
+import AirDetailsPage from "../pages/AirTransport/UserUI_A/AirDetails";
+import SummaryAir from "../pages/AirTransport/UserUI_A/SummaryAir";
 
 const PrivateRoutes = () => {
   const ProfilePage = lazy(() => import("../modules/profile/ProfilePage"));
@@ -111,6 +113,11 @@ const PrivateRoutes = () => {
         {/* AirTransport user  */}
 
         <Route path="/Air/Search" element={<SearchAir />} />
+        <Route path="/AirDetails" element={<AirDetailsPage />} />
+
+        <Route path="/summaryAir" element={<SummaryAir />} />
+
+        {/* GroundTransport user */}
 
         {/* <Route path=" Air/Booking" element={<AirBookingPage/>}></Route> */}
 
