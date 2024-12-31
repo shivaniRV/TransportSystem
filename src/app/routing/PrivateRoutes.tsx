@@ -31,6 +31,7 @@ import BusBooking from "../pages/GroundTransport/UserUI_G/Homepage";
 import BusSearch from "../pages/GroundTransport/UserUI_G/BusSearch";
 // import { AirBookingPage } from "../pages/AirTransport/Admin_Air/Airbooking";
 // import  {ShipUserPage} from "../pages/WaterTransport/Admin_Water/ShipUsers";
+import AirHomePage from "../pages/AirTransport/UserUI_A/homepageair";
 
 import Search from "../pages/WaterTransport/Userinterface/Search";
 
@@ -103,6 +104,8 @@ const PrivateRoutes = () => {
         <Route path="Air/FAQ" element={<AircraftFAQPage />}></Route>
         <Route path="Air/Employee" element={<AirEmployeePage />}></Route>
         <Route path="Air/Users" element={<AirUserPage />}></Route>
+
+        <Route path="Air/Homepage" element={<AirHomePage />} />
 
         {/* user section search page */}
 
