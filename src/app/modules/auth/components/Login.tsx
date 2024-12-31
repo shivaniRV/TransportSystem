@@ -29,10 +29,10 @@ const initialValues = {
   https://jaredpalmer.com/formik/docs/tutorial#getfieldprops
   https://medium.com/@maurice.de.beijer/yup-validation-and-typescript-and-formik-6c342578a20e
 */
-
 export function Login() {
   const [loading, setLoading] = useState(false);
   const { saveAuth, setCurrentUser } = useAuth();
+  const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues,
@@ -44,6 +44,15 @@ export function Login() {
         saveAuth(auth);
         const { data: user } = await getUserByToken(auth.api_token);
         setCurrentUser(user);
+
+        // Navigate based on role or specific condition
+        if (user.roles && user.roles.includes("Aqualure")) {
+          navigate("/aqualure"); // Navigate to Aqualure-specific page
+        } else if (user.roles && user.roles.includes("Ground")) {
+          navigate("/ground"); // Navigate to Ground-specific page
+        } else {
+          navigate("/home"); // Default to home page
+        }
       } catch (error) {
         console.error(error);
         saveAuth(undefined);
@@ -61,7 +70,8 @@ export function Login() {
       noValidate
       id="kt_login_signin_form"
     >
-      {/* begin::Heading */}
+      {/* other form contents... */}
+
       <div className="text-center mb-11">
         <h1 className="text-gray-900 fw-bolder mb-3">Sign In</h1>
         <div className="text-gray-500 fw-semibold fs-6">
@@ -201,9 +211,7 @@ export function Login() {
         {/* end::Link */}
       </div>
       {/* end::Wrapper */}
-
-      {/* begin::Action */}
-      <div className="d-grid mb-10">
+      <div className="d-flex justify-content-between mb-10">
         <button
           type="submit"
           id="kt_sign_in_submit"
@@ -218,22 +226,13 @@ export function Login() {
             </span>
           )}
         </button>
-      </div>
-      {/* end::Action */}
 
-      <div className="text-gray-500 text-center fw-semibold fs-6">
-        Not a Member yet?{" "}
-        <Link to="/auth/registration" className="link-primary">
-          Sign up
-        </Link>
-      </div>
-
-      {/* begin::Action */}
-      <div className="d-flex justify-content-between mb-10">
         <button
           type="button"
           className="btn btn-primary me-3"
-          // onClick={() => navigate("/aqualure")}
+          onClick={() => {
+            navigate("/aqualure"); // Navigate to Aqualure
+          }}
           disabled={formik.isSubmitting || !formik.isValid}
         >
           {!loading && <span className="indicator-label">Aqualure</span>}
@@ -248,7 +247,9 @@ export function Login() {
         <button
           type="button"
           className="btn btn-secondary me-3"
-          // onClick={() => navigate("/goground")}
+          onClick={() => {
+            navigate("Ground/homepage"); // Navigate to Ground
+          }}
           disabled={formik.isSubmitting || !formik.isValid}
         >
           {!loading && <span className="indicator-label">GoGround</span>}
@@ -263,7 +264,9 @@ export function Login() {
         <button
           type="button"
           className="btn btn-info"
-          // onClick={() => navigate("/skyfeet")}
+          onClick={() => {
+            navigate("/"); // Navigate to SkyFeet
+          }}
           disabled={formik.isSubmitting || !formik.isValid}
         >
           {!loading && <span className="indicator-label">SkyFeet</span>}
@@ -275,7 +278,6 @@ export function Login() {
           )}
         </button>
       </div>
-      {/* end::Action */}
     </form>
   );
 }
