@@ -2,12 +2,11 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 const BusBooking = () => {
-
   const navigate = useNavigate();
 
-const handleSearch=()=>{
-navigate("/BusSearch");
-}
+  const handleSearch = () => {
+    navigate("/BusSearch");
+  };
 
   return (
     <div className="container mt-4">
@@ -86,9 +85,12 @@ navigate("/BusSearch");
 
             {/* Search Button */}
             <div className="col-md-12 mt-12 d-flex justify-content-end">
-              <button className="btn btn-primary"
-              onClick={handleSearch}
-              >Search</button>
+              <button
+                className="btn btn-primary"
+                onClick={() => navigate("/Ground/Search")}
+              >
+                Search
+              </button>
             </div>
           </div>
         </div>

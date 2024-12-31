@@ -1,6 +1,8 @@
 import React from "react";
-
+import { useNavigate } from "react-router-dom";
 const AirHomePage = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="container mt-4">
       <div className="card">
@@ -78,7 +80,12 @@ const AirHomePage = () => {
 
             {/* Search Button */}
             <div className="col-md-12 mt-12 d-flex justify-content-end">
-              <button className="btn btn-primary">Search Flights</button>
+              <button
+                className="btn btn-primary"
+                onClick={() => navigate("/Air/Search")}
+              >
+                Search
+              </button>
             </div>
           </div>
         </div>

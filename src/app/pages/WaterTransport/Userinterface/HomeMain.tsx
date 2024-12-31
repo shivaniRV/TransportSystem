@@ -1,15 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-
-
+import Search from "./Search";
 const HomeMain = () => {
+  const navigate = useNavigate();
 
-const navigate = useNavigate();
-
-const handleSearch =()=>{
-  navigate("/Search");
-}
-
+  const handleSearch = () => {
+    navigate("/Search");
+  };
 
   return (
     <div className="container mt-4">
@@ -89,9 +86,12 @@ const handleSearch =()=>{
 
             {/* Search Button */}
             <div className="col-md-12 mt-12 d-flex justify-content-end">
-              <button className="btn btn-primary"
-              onClick={handleSearch}
-              >Search</button>
+              <button
+                className="btn btn-primary"
+                onClick={() => navigate("/water/search")}
+              >
+                Search
+              </button>
             </div>
           </div>
         </div>
