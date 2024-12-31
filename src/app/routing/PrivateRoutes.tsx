@@ -30,7 +30,7 @@ import { ShipBookingPage } from "../pages/WaterTransport/Admin_Water/Shipbooking
 import BusBooking from "../pages/GroundTransport/UserUI_G/Homepage";
 import BusSearch from "../pages/GroundTransport/UserUI_G/BusSearch";
 // import { AirBookingPage } from "../pages/AirTransport/Admin_Air/Airbooking";
-// import  {ShipUserPage} from "../pages/WaterTransport/Admin_Water/ShipUsers";
+import { ShipUserPage } from "../pages/WaterTransport/Admin_Water/ShipUsers";
 import AirHomePage from "../pages/AirTransport/UserUI_A/homepageair";
 
 import Search from "../pages/WaterTransport/Userinterface/Search";
@@ -80,14 +80,17 @@ const PrivateRoutes = () => {
           }
         /> */}
         <Route path="/home" element={<HomeMain />} />
+        {/* Water Admin routes */}
         <Route path="/Water/Admindashboard" element={<SidebarPage />}></Route>
         <Route path="/BusSearch" element={<BusSearch />}></Route>
         <Route path="Water/Ships" element={<ShipsPage />}></Route>
         <Route path="Water/Employees" element={<EmployeePage />}></Route>
         <Route path="Water/Revenue" element={<RevenuePage />}></Route>
-        {/* <Route path="Water/Shipuser" element={<ShipUserPage/>}></Route> */}
+        <Route path="Water/Shipuser" element={<ShipUserPage />}></Route>
         <Route path="Water/booking" element={<ShipBookingPage />}></Route>
         <Route path="Water/FAQ" element={<FAQPage />}></Route>
+
+        {/* Ground Admin Routes */}
         <Route path="Ground/homepage" element={<BusBooking />}></Route>
         <Route
           path="Ground/AdminDashboard"
@@ -99,15 +102,17 @@ const PrivateRoutes = () => {
         <Route path="Ground/bususer" element={<BusUserPage />}></Route>
         <Route path="Ground/busbooking" element={<BusBookingPage />}></Route>
         <Route path="Ground/FAQ" element={<FAQGroudPage />}></Route>
+
+        {/* 
+        Air Admin Routes */}
         <Route path="Air/Aircrafts" element={<PlansPage />}></Route>
         <Route path="Air/Revenue" element={<AircraftRevenuePage />}></Route>
         <Route path="Air/FAQ" element={<AircraftFAQPage />}></Route>
         <Route path="Air/Employee" element={<AirEmployeePage />}></Route>
         <Route path="Air/Users" element={<AirUserPage />}></Route>
-
         <Route path="Air/Homepage" element={<AirHomePage />} />
 
-        {/* user section search page */}
+        {/* user section water  page */}
 
         <Route path="water/search" element={<Search />} />
 
@@ -119,7 +124,6 @@ const PrivateRoutes = () => {
 
         <Route path="/Air/Search" element={<SearchAir />} />
         <Route path="/AirDetails" element={<AirDetailsPage />} />
-
         <Route path="/summaryAir" element={<SummaryAir />} />
 
         {/* GroundTransport user */}
