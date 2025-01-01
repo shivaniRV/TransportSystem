@@ -1,12 +1,33 @@
 import React, { useState } from "react";
 import Pagination from "../../Pagination";
 import AddShip from "./AddShip";
-
+// import { AdminService } from "../../../../api/Service/AirTransport/Admin/AdminService";
 // Example static data for ships
 const mockShips = [
-  { id: 1, name: "Ship A", type: "Cargo", capacity: 3000, status: "Active", available: true },
-  { id: 2, name: "Ship B", type: "Passenger", capacity: 1500, status: "Inactive", available: false },
-  { id: 3, name: "Ship C", type: "Cargo", capacity: 2500, status: "Active", available: true },
+  {
+    id: 1,
+    name: "Ship A",
+    type: "Cargo",
+    capacity: 3000,
+    status: "Active",
+    available: true,
+  },
+  {
+    id: 2,
+    name: "Ship B",
+    type: "Passenger",
+    capacity: 1500,
+    status: "Inactive",
+    available: false,
+  },
+  {
+    id: 3,
+    name: "Ship C",
+    type: "Cargo",
+    capacity: 2500,
+    status: "Active",
+    available: true,
+  },
 ];
 
 export const ShipsPage: React.FC = () => {
@@ -14,9 +35,8 @@ export const ShipsPage: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [entriesPerPage, setEntriesPerPage] = useState(5);
   const [search, setSearch] = useState("");
-  const [showAddShipModal, setShowAddShipModal] = useState(false); 
+  const [showAddShipModal, setShowAddShipModal] = useState(false);
   const [status, setStatus] = useState("");
-
 
   const filteredShips = ships.filter((ship) =>
     ship.name.toLowerCase().includes(search.toLowerCase())
@@ -44,9 +64,15 @@ export const ShipsPage: React.FC = () => {
   };
 
   // Define handleAddShip to handle adding a new ship
-  const handleAddShip = (newShip: { name: string; type: string; capacity: number; status: string; available: boolean }) => {
-    const newShipWithId = { ...newShip, id: ships.length + 1 }; 
-    setShips([...ships, newShipWithId]); 
+  const handleAddShip = (newShip: {
+    name: string;
+    type: string;
+    capacity: number;
+    status: string;
+    available: boolean;
+  }) => {
+    const newShipWithId = { ...newShip, id: ships.length + 1 };
+    setShips([...ships, newShipWithId]);
   };
 
   return (
@@ -76,28 +102,28 @@ export const ShipsPage: React.FC = () => {
             Filter
           </button> */}
 
-     <div className='d-flex align-items-center'>
+          <div className="d-flex align-items-center">
             {/* begin::Label */}
-            <span className='fs-7 fw-bolder text-gray-700 pe-4 text-nowrap d-none d-xxl-block'>
+            <span className="fs-7 fw-bolder text-gray-700 pe-4 text-nowrap d-none d-xxl-block">
               Sort By:
             </span>
             {/* end::Label */}
 
             {/* begin::Select */}
             <select
-              className='form-select form-select-sm form-select-solid w-100px w-xxl-125px'
-              data-control='select2'
-              data-placeholder='All'
-              data-hide-search='true'
+              className="form-select form-select-sm form-select-solid w-100px w-xxl-125px"
+              data-control="select2"
+              data-placeholder="All"
+              data-hide-search="true"
               defaultValue={status}
               onChange={(e) => setStatus(e.target.value)}
             >
-              <option value=''></option>
-              <option value='1'>All</option>
-              <option value='2'>Avaible</option>
-              <option value='3'>Active</option>
-              <option value='3'>Cargo</option>
-              <option value='3'>Passenger</option>
+              <option value=""></option>
+              <option value="1">All</option>
+              <option value="2">Avaible</option>
+              <option value="3">Active</option>
+              <option value="3">Cargo</option>
+              <option value="3">Passenger</option>
             </select>
             {/* end::Select  */}
           </div>
@@ -129,7 +155,10 @@ export const ShipsPage: React.FC = () => {
             </thead>
             <tbody>
               {filteredShips
-                .slice((currentPage - 1) * entriesPerPage, currentPage * entriesPerPage)
+                .slice(
+                  (currentPage - 1) * entriesPerPage,
+                  currentPage * entriesPerPage
+                )
                 .map((ship) => (
                   <tr key={ship.id}>
                     <td>{ship.name}</td>
@@ -145,42 +174,41 @@ export const ShipsPage: React.FC = () => {
                     </td>
                     <td className="text-center">
                       <div className="d-flex flex-row align-items-center">
-                         <button
-                      className="btn btn-icon btn-bg-light btn-sm me-1"
-                      //Viewbutton functionality
-                    >
-                      <i className="ki-duotone ki-eye fs-3 text-primary">
-                        <span className="path1"></span>
-                        <span className="path2"></span>
-                        <span className="path3"></span>
-                      </i>
-                    </button>
-
+                        <button
+                          className="btn btn-icon btn-bg-light btn-sm me-1"
+                          //Viewbutton functionality
+                        >
+                          <i className="ki-duotone ki-eye fs-3 text-primary">
+                            <span className="path1"></span>
+                            <span className="path2"></span>
+                            <span className="path3"></span>
+                          </i>
+                        </button>
 
                         <button
-                        type="button"
-                        className="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
-                        // Edit button functionality
-                      >
-                        <i className="ki-duotone ki-pencil fs-3 text-primary">
-                          <span className="path1"></span>
-                          <span className="path2"></span>
-                        </i>
-                      </button>
+                          type="button"
+                          className="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
+                          // Edit button functionality
+                        >
+                          <i className="ki-duotone ki-pencil fs-3 text-primary">
+                            <span className="path1"></span>
+                            <span className="path2"></span>
+                          </i>
+                        </button>
 
                         <button
-                        type="button"
-                        className="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
-                         // Delete button functionality
-                      >
-                        <i className="ki-duotone ki-trash fs-3 text-danger">
-                          <span className="path1"></span>
-                          <span className="path2"></span>
-                          <span className="path3"></span>
-                          <span className="path4"></span>
-                          <span className="path5"></span>
-                        </i>
-                      </button>
+                          type="button"
+                          className="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
+                          // Delete button functionality
+                        >
+                          <i className="ki-duotone ki-trash fs-3 text-danger">
+                            <span className="path1"></span>
+                            <span className="path2"></span>
+                            <span className="path3"></span>
+                            <span className="path4"></span>
+                            <span className="path5"></span>
+                          </i>
+                        </button>
                       </div>
                     </td>
                   </tr>
@@ -204,12 +232,10 @@ export const ShipsPage: React.FC = () => {
       {/* Add Ship Modal */}
       {showAddShipModal && (
         <AddShip
-          onClose={() => setShowAddShipModal(false)} 
-          onAdd={handleAddShip} 
+          onClose={() => setShowAddShipModal(false)}
+          onAdd={handleAddShip}
         />
       )}
     </div>
   );
 };
-
-

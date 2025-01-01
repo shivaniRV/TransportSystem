@@ -49,7 +49,7 @@ export function Login() {
         if (user.roles && user.roles.includes("Aqualure")) {
           navigate("/aqualure"); // Navigate to Aqualure-specific page
         } else if (user.roles && user.roles.includes("Ground")) {
-          navigate("/ground"); // Navigate to Ground-specific page
+          navigate("/Ground/homepage"); // Navigate to Ground-specific page
         } else {
           navigate("/home"); // Default to home page
         }
@@ -277,6 +277,12 @@ export function Login() {
             </span>
           )}
         </button>
+      </div>
+      <div className="text-gray-500 text-center fw-semibold fs-6">
+        Not a Member yet?{" "}
+        <Link to="/auth/registration" className="link-primary">
+          Sign up
+        </Link>
       </div>
     </form>
   );
