@@ -287,35 +287,218 @@
 //     </form>
 //   );
 // }
+// export default Login;
+
+// import React, { useState } from "react";
+// import { useNavigate, Link } from "react-router-dom";
+// import { AuthService } from "../../../../api/Service/AuthServicewater";
+// import { LoginBasicInfo } from "../../../../api/Model/AuthInterfaceWater";
+// import SidebarPage from "../../../pages/WaterTransport/Admin_Water/AdminDashboard";
+// const Login = () => {
+//   const [email, setEmail] = useState("");
+//   const [password, setPassword] = useState("");
+//   const [error, setError] = useState("");
+//   const [isLoggedIn, setIsLoggedIn] = useState(false); // Track login status
+//   const navigate = useNavigate();
+
+//   const handleLogin = async (e: React.FormEvent) => {
+//     e.preventDefault();
+
+//     // Basic validation
+//     if (!email || !password) {
+//       setError("Both fields are required.");
+//       return;
+//     }
+
+//     const loginData: LoginBasicInfo = { email, password };
+
+//     try {
+//       // Call AuthService.login to hit the API
+//       const userData = await AuthService.login(loginData);
+
+//       // Optionally, store userData or use it as needed
+//       console.log(userData);
+
+//       // Set login status to true
+//       setIsLoggedIn(true);
+
+//       // Clear error
+//       setError("");
+//     } catch (err) {
+//       console.error("Login failed:", err);
+//       setError("Login failed. Please check your credentials.");
+//     }
+//   };
+
+//   const navigateToDashboard = (path: string) => {
+//     console.log(`Navigating to: ${path}`);
+//     navigate(path);
+//   };
+
+//   return (
+//     <div style={{ margin: "20px" }}>
+//       {!isLoggedIn ? (
+//         <form
+//           onSubmit={handleLogin}
+//           style={{ maxWidth: "400px", margin: "auto" }}
+//         >
+//           <div style={{ marginBottom: "10px" }}>
+//             <input
+//               type="email"
+//               placeholder="Email"
+//               value={email}
+//               onChange={(e) => setEmail(e.target.value)}
+//               style={{
+//                 width: "100%",
+//                 padding: "10px",
+//                 marginBottom: "5px",
+//                 border: "1px solid #ccc",
+//                 borderRadius: "5px",
+//               }}
+//             />
+//           </div>
+//           <div style={{ marginBottom: "10px" }}>
+//             <input
+//               type="password"
+//               placeholder="Password"
+//               value={password}
+//               onChange={(e) => setPassword(e.target.value)}
+//               style={{
+//                 width: "100%",
+//                 padding: "10px",
+//                 border: "1px solid #ccc",
+//                 borderRadius: "5px",
+//               }}
+//             />
+//           </div>
+//           {error && (
+//             <div style={{ color: "red", marginBottom: "10px" }}>{error}</div>
+//           )}
+//           <button
+//             type="submit"
+//             style={{
+//               width: "100%",
+//               padding: "10px",
+//               backgroundColor: "#007bff",
+//               color: "white",
+//               border: "none",
+//               borderRadius: "5px",
+//               cursor: "pointer",
+//             }}
+//           >
+//             Login
+//           </button>
+
+//           <div className="text-gray-500 text-center fw-semibold fs-6">
+//             Not a Member yet?{" "}
+//             <Link to="/auth/registration" className="link-primary">
+//               Sign up
+//             </Link>
+//           </div>
+//         </form>
+//       ) : (
+//         <div style={{ textAlign: "center" }}>
+//           <h2>Welcome! Choose your dashboard:</h2>
+//           <button
+//             onClick={() => navigateToDashboard("Water/Admindashboard")}
+//             style={{
+//               padding: "10px 20px",
+//               margin: "10px",
+//               backgroundColor: "#007bff",
+//               color: "white",
+//               border: "none",
+//               borderRadius: "5px",
+//               cursor: "pointer",
+//             }}
+//           >
+//             Aqualure
+//           </button>
+//           <button
+//             onClick={() => navigateToDashboard("Ground/homepage")}
+//             style={{
+//               padding: "10px 20px",
+//               margin: "10px",
+//               backgroundColor: "#28a745",
+//               color: "white",
+//               border: "none",
+//               borderRadius: "5px",
+//               cursor: "pointer",
+//             }}
+//           >
+//             GoGround
+//           </button>
+//           <button
+//             onClick={() => navigateToDashboard("/Air/Homepage")}
+//             style={{
+//               padding: "10px 20px",
+//               margin: "10px",
+//               backgroundColor: "#ffc107",
+//               color: "white",
+//               border: "none",
+//               borderRadius: "5px",
+//               cursor: "pointer",
+//             }}
+//           >
+//             SkyFleet
+//           </button>
+//         </div>
+//       )}
+//     </div>
+//   );
+// };
+
+// export default Login;
 
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { AuthService } from "../../../../api/Service/AuthService";
+import { useNavigate, Link } from "react-router-dom";
+import { AuthService } from "../../../../api/Service/AuthServicewater";
+
+import { AirService } from "../../../../api/Service/AuthServiceAir";
+import { GroundService } from "../.././/../../api/Service/AuthServiceGround";
 import { LoginBasicInfo } from "../../../../api/Model/AuthInterfaceWater";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [type, setType] = useState<"water" | "air" | "ground" | "">(""); // Selected type
   const navigate = useNavigate();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const loginData: LoginBasicInfo = { email, password }; // Create loginData object
+    if (!type) {
+      setError("Please select a service type.");
+      return;
+    }
+
+    if (!email || !password) {
+      setError("Both fields are required.");
+      return;
+    }
+
+    const loginData: LoginBasicInfo = { email, password };
 
     try {
-      // Call AuthService.login to hit the API
-      const userData = await AuthService.login(loginData); // Get the full login data (email, password, etc.)
+      let userData;
 
-      // Optionally, store userData or use it as needed
-      console.log(userData); // You can log or handle the returned userData
+      switch (type) {
+        case "water":
+          userData = await AuthService.login(loginData);
+          break;
+        case "air":
+          userData = await AirService.login(loginData);
+          break;
+        case "ground":
+          userData = await GroundService.login(loginData);
+          break;
+        default:
+          throw new Error("Invalid service type selected.");
+      }
 
-      // For example, navigate to the dashboard after successful login
-      console.log("Navigating to /Water/Admindashboard");
-      navigate("dashboard");
-      // Delay navigation slightly to allow other state updates to complete
+      console.log("Login successful:", userData);
+      setError("");
+      navigate("Air/Homepage");
     } catch (err) {
       console.error("Login failed:", err);
       setError("Login failed. Please check your credentials.");
@@ -323,27 +506,113 @@ const Login = () => {
   };
 
   return (
-    <form onSubmit={handleLogin}>
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
+    <div style={{ margin: "20px" }}>
+      <form
+        onSubmit={handleLogin}
+        style={{ maxWidth: "400px", margin: "auto" }}
+      >
+        <div style={{ marginBottom: "10px" }}>
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            style={{
+              width: "100%",
+              padding: "10px",
+              marginBottom: "5px",
+              border: "1px solid #ccc",
+              borderRadius: "5px",
+            }}
+          />
+        </div>
 
-      <br></br>
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      {error && <div className="error">{error}</div>}
-
-      <button type="submit" className="btn btn-info">
-        Login
-      </button>
-    </form>
+        <div style={{ textAlign: "center", marginBottom: "20px" }}>
+          <button
+            type="button"
+            onClick={() => setType("water")}
+            style={{
+              padding: "10px 20px",
+              margin: "5px",
+              backgroundColor: "#007bff",
+              color: "white",
+              border: "none",
+              borderRadius: "5px",
+              cursor: "pointer",
+            }}
+          >
+            Aqualure
+          </button>
+          <button
+            type="button"
+            onClick={() => setType("ground")}
+            style={{
+              padding: "10px 20px",
+              margin: "5px",
+              backgroundColor: "#28a745",
+              color: "white",
+              border: "none",
+              borderRadius: "5px",
+              cursor: "pointer",
+            }}
+          >
+            GoGround
+          </button>
+          <button
+            type="button"
+            onClick={() => setType("air")}
+            style={{
+              padding: "10px 20px",
+              margin: "5px",
+              backgroundColor: "#ffc107",
+              color: "white",
+              border: "none",
+              borderRadius: "5px",
+              cursor: "pointer",
+            }}
+          >
+            SkyFleet
+          </button>
+        </div>
+        <div style={{ marginBottom: "10px" }}>
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            style={{
+              width: "100%",
+              padding: "10px",
+              border: "1px solid #ccc",
+              borderRadius: "5px",
+            }}
+          />
+        </div>
+        {error && (
+          <div style={{ color: "red", marginBottom: "10px" }}>{error}</div>
+        )}
+        <button
+          type="submit"
+          style={{
+            width: "100%",
+            padding: "10px",
+            backgroundColor: "#007bff",
+            color: "white",
+            border: "none",
+            borderRadius: "5px",
+            cursor: "pointer",
+          }}
+        >
+          Login
+        </button>
+        <div className="text-gray-500 text-center fw-semibold fs-6">
+          Not a Member yet?{" "}
+          <Link to="/auth/registration" className="link-primary">
+            Sign up
+          </Link>
+        </div>
+      </form>
+    </div>
   );
 };
 

@@ -2,6 +2,7 @@ import { useIntl } from "react-intl";
 import { PageTitle } from "../../../_metronic/layout/core";
 import { Navigate, Route, Routes } from "react-router-dom";
 import SidebarPage from "../WaterTransport/Admin_Water/AdminDashboard";
+import ShipDetailsPage from "../WaterTransport/Userinterface/ShipDetails";
 
 import {
   ListsWidget1,
@@ -21,46 +22,46 @@ import {
 const DashboardPage = () => (
   <>
     {/* begin::Row */}
-    <div className="row g-5 g-xl-8">
-      {/* <div className='col-xl-4'>
+    {/* <div className="row g-5 g-xl-8">
+      <div className="col-xl-4">
         <StatisticsWidget5
-          className='card-xl-stretch mb-xl-8'
-          svgIcon='basket'
-          color='body-white'
-          iconColor='primary'
-          title='Shopping Cart'
-          description='Lands, Houses, Ranchos, Farms'
-          titleColor='gray-900'
-          descriptionColor='gray-400'
+          className="card-xl-stretch mb-xl-8"
+          svgIcon="basket"
+          color="body-white"
+          iconColor="primary"
+          title="Shopping Cart"
+          description="Lands, Houses, Ranchos, Farms"
+          titleColor="gray-900"
+          descriptionColor="gray-400"
         />
-      </div> */}
+      </div>
 
-      {/* <div className='col-xl-4'>
+      <div className="col-xl-4">
         <StatisticsWidget5
-          className='card-xl-stretch mb-xl-8'
-          svgIcon='element-11'
-          color='primary'
-          iconColor='white'
-          title='Appartments'
-          description='Flats, Shared Rooms, Duplex'
-          titleColor='white'
-          descriptionColor='white'
+          className="card-xl-stretch mb-xl-8"
+          svgIcon="element-11"
+          color="primary"
+          iconColor="white"
+          title="Appartments"
+          description="Flats, Shared Rooms, Duplex"
+          titleColor="white"
+          descriptionColor="white"
         />
-      </div> */}
+      </div>
 
-      {/* <div className='col-xl-4'>
+      <div className="col-xl-4">
         <StatisticsWidget5
-          className='card-xl-stretch mb-5 mb-xl-8'
-          svgIcon='left'
-          color='dark'
-          iconColor='gray-100'
-          title='Sales Stats'
-          description='50% Increased for FY20'
-          titleColor='gray-100'
-          descriptionColor='gray-100'
+          className="card-xl-stretch mb-5 mb-xl-8"
+          svgIcon="left"
+          color="dark"
+          iconColor="gray-100"
+          title="Sales Stats"
+          description="50% Increased for FY20"
+          titleColor="gray-100"
+          descriptionColor="gray-100"
         />
-      </div> */}
-    </div>
+      </div>
+    </div> */}
     {/* end::Row */}
 
     {/* begin::Row */}
@@ -140,11 +141,12 @@ const DashboardWrapper = () => {
   return (
     <>
       <Route path="/Water/Admindashboard" element={<SidebarPage />}></Route>
-      <PageTitle breadcrumbs={[]}>
+      {/* <PageTitle breadcrumbs={[]}>
         {intl.formatMessage({ id: "MENU.DASHBOARD" })}
-      </PageTitle>
+      </PageTitle> */}
       {/* <DashboardPage /> */}
-      <SidebarPage />
+      {/* <SidebarPage /> */}
+      <ShipDetailsPage />
     </>
   );
 };
