@@ -1,8 +1,5 @@
 export interface RegisterBasicInfo {
-    fullName: string; 
+    username: string; 
     email: string;    
     password: string; 
-    confirmPassword: string; 
-    phoneNumber?: string; 
-
   }
