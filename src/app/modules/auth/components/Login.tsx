@@ -165,6 +165,75 @@ const Login: React.FC = () => {
   const { saveAuth } = useAuth();
   const navigate = useNavigate();
 
+  // const handleLogin = async (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   setError(null);
+
+  //   if (!type || !email || !password) {
+  //     setError("Please fill in all fields.");
+  //     return;
+  //   }
+
+  //   const loginData: LoginBasicInfo = { email, password };
+
+  //   try {
+  //     let userData: LoginBasicInfo;
+
+  //     // Determine the service based on the selected type
+
+  //     const adminEmails = {
+  //       water: "adminwater@gmail.com",
+  //       air: "adminair@gmail.com",
+  //       ground: "adminground@gmail.com",
+  //     };
+
+  //     switch (type) {
+  //       case "air":
+  //         userData = await AirService.login(loginData);
+  //         if (email === adminEmails.air) {
+  //           navigate("/Air/AdminDashboard");
+  //         } else {
+  //           navigate("/Air/Homepage");
+  //         }
+  //         break;
+  //       case "ground":
+  //         userData = await GroundService.login(loginData);
+  //         if (email === adminEmails.ground) {
+  //           navigate("/Ground/AdminDashboard");
+  //         } else {
+  //           navigate("/Ground/Homepage");
+  //         }
+  //         break;
+  //       case "water":
+  //         userData = await AuthService.login(loginData);
+  //         if (email === adminEmails.ground) {
+  //           navigate("/Ground/AdminDashboard");
+  //         } else {
+  //           navigate("/Ground/Homepage");
+  //         }
+  //       default:
+  //         userData = await AuthService.login(loginData); // Default to AuthService (water)
+  //     }
+
+  //     // Save user state and redirect based on the service type
+  //     saveAuth(userData);
+
+  //     // switch (type) {
+  //     //   case "air":
+  //     //     navigate("/Air/Homepage");
+  //     //     break;
+  //     //   case "ground":
+  //     //     navigate("/Ground/homepage");
+  //     //     break;
+  //     //   default:
+  //     //     navigate("/home");
+  //     // }
+  //   } catch (err) {
+  //     console.error("Login failed:", err);
+  //     setError("Invalid credentials or login error.");
+  //   }
+  // };
+
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
@@ -179,31 +248,50 @@ const Login: React.FC = () => {
     try {
       let userData: LoginBasicInfo;
 
-      // Determine the service based on the selected type
+      // Admin email configuration
+      const adminEmails = {
+        water: "adminwater@gmail.com",
+        air: "adminair@gmail.com",
+        ground: "adminground@gmail.com",
+      };
+
+      // Service and navigation based on type
       switch (type) {
         case "air":
           userData = await AirService.login(loginData);
+          if (userData && email === adminEmails.air) {
+            navigate("/Air/Homepage");
+          } else {
+            navigate("/Air/Search");
+          }
           break;
+
         case "ground":
           userData = await GroundService.login(loginData);
+          if (userData && email === adminEmails.ground) {
+            navigate("/Ground/AdminDashboard");
+          } else {
+            navigate("/Ground/homepage");
+          }
           break;
+
+        case "water":
+          userData = await AuthService.login(loginData);
+          if (userData && email === adminEmails.water) {
+            navigate("/Water/Admindashboard");
+          } else {
+            navigate("/home");
+          }
+          break;
+
         default:
-          userData = await AuthService.login(loginData); // Default to AuthService (water)
+          // Default case for unsupported types
+          setError("Invalid service type selected.");
+          return;
       }
 
-      // Save user state and redirect based on the service type
+      // Save user state after successful login
       saveAuth(userData);
-
-      switch (type) {
-        case "air":
-          navigate("/Air/Homepage");
-          break;
-        case "ground":
-          navigate("/Ground/homepage");
-          break;
-        default:
-          navigate("/home");
-      }
     } catch (err) {
       console.error("Login failed:", err);
       setError("Invalid credentials or login error.");
