@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../auth/core/Auth";
 
 interface LoginBasicInfo {
@@ -42,10 +42,10 @@ const Login: React.FC = () => {
           navigate("/home");
           break;
         case "air":
-          navigate("/air/homepage");
+          navigate("/Air/Homepage");
           break;
         case "ground":
-          navigate("/ground/homepage");
+          navigate("/Ground/homepage");
           break;
         default:
           navigate("/");
@@ -58,9 +58,20 @@ const Login: React.FC = () => {
 
   return (
     <div>
-      <h2>Login</h2>
-      <form onSubmit={handleLogin}>
-        <label>
+      <form
+        className="form w-100"
+        id="kt_login_signin_form"
+        onSubmit={handleLogin}
+      >
+        <div className="text-center mb-11">
+          <h1 className="text-gray-900 fw-bolder mb-3">Sign In</h1>
+
+          <div className="text-gray-500 fw-semibold fs-6">
+            Your Social Campaigns
+          </div>
+        </div>
+
+        <label className="form-label fs-6 fw-bolder text-gray-900">
           Email:
           <input
             type="email"
@@ -69,7 +80,7 @@ const Login: React.FC = () => {
             required
           />
         </label>
-        <label>
+        <label className="form-label fs-6 fw-bolder text-gray-900">
           Password:
           <input
             type="password"
@@ -78,16 +89,59 @@ const Login: React.FC = () => {
             required
           />
         </label>
-        <label>
+        {/* <label>
           Service Type:
           <select value={type} onChange={(e) => setType(e.target.value)}>
             <option value="water">Water</option>
             <option value="air">Air</option>
             <option value="ground">Ground</option>
           </select>
-        </label>
+        </label> */}
+
+        <div>
+          <label>
+            <span>Service Type:</span>
+            <div>
+              <label>
+                <input
+                  type="radio"
+                  value="water"
+                  checked={type === "water"}
+                  onChange={(e) => setType(e.target.value)}
+                />
+                Water
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  value="air"
+                  checked={type === "air"}
+                  onChange={(e) => setType(e.target.value)}
+                />
+                Air
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  value="ground"
+                  checked={type === "ground"}
+                  onChange={(e) => setType(e.target.value)}
+                />
+                Ground
+              </label>
+            </div>
+          </label>
+        </div>
+
         {error && <p style={{ color: "red" }}>{error}</p>}
         <button type="submit">Login</button>
+
+        <div className="text-gray-500 text-center fw-semibold fs-6">
+          Not a Member yet?{" "}
+          <Link to="/auth/registration" className="link-primary">
+            Sign up
+          </Link>
+        </div>
       </form>
     </div>
   );
