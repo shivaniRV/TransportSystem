@@ -1,6 +1,8 @@
 export interface AuthModel {
-  api_token: string
-  refreshToken?: string
+  // api_token: string
+  // refreshToken?: string
+
+  isAuthenticated: boolean;
 }
 
 export interface UserAddressModel {
