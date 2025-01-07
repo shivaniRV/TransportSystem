@@ -43,6 +43,9 @@ import AirDetailsPage from "../pages/AirTransport/UserUI_A/AirDetails";
 import SummaryAir from "../pages/AirTransport/UserUI_A/SummaryAir";
 import BusDetails from "../pages/GroundTransport/UserUI_G/BusDetails";
 import SummaryGround from "../pages/GroundTransport/UserUI_G/SummaryGround";
+import UserdashBoardWater from "../pages/WaterTransport/Userinterface/UserdashBoardWater";
+import UserDashBoardAir from "../pages/AirTransport/UserUI_A/UserDashBoardAir";
+import UserDashboard from "../pages/GroundTransport/UserUI_G/UserDashboard";
 
 const PrivateRoutes = () => {
   const ProfilePage = lazy(() => import("../modules/profile/ProfilePage"));
@@ -126,17 +129,20 @@ const PrivateRoutes = () => {
         <Route path="/ship-details" element={<ShipDetailsPage />} />
 
         <Route path="/summary" element={<SummaryPage />} />
+        <Route path="/waterUserDashboard" element={<UserdashBoardWater />} />
 
         {/* AirTransport user  */}
 
         <Route path="/Air/Search" element={<SearchAir />} />
         <Route path="/AirDetails" element={<AirDetailsPage />} />
         <Route path="/summaryAir" element={<SummaryAir />} />
+        <Route path="/AirUserDashBoard" element={<UserDashBoardAir />} />
 
         {/* GroundTransport user */}
         <Route path="/Ground/Search" element={<BusSearch />} />
         <Route path="/BusDetails" element={<BusDetails />} />
         <Route path="/SummaryGround" element={<SummaryGround />} />
+        <Route path="/UserDashBoardGround" element={<UserDashboard />} />
 
         {/* <Route path=" Air/Booking" element={<AirBookingPage/>}></Route> */}
 

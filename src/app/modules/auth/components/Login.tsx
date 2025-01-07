@@ -271,7 +271,7 @@ const Login: React.FC = () => {
             localStorage.setItem("role", role);
             console.log(role);
             navigate(
-              role === "admin" ? "/Air/AdminDashboard" : "/Air/Homepage"
+              role === "admin" ? "/Air/AdminDashboard" : "/AirUserDashBoard"
             );
           }
           break;
@@ -285,7 +285,9 @@ const Login: React.FC = () => {
             localStorage.setItem("role", role);
             console.log(role);
             navigate(
-              role === "admin" ? "/Ground/AdminDashboard" : "/Ground/Homepage"
+              role === "admin"
+                ? "/Ground/AdminDashboard"
+                : "/UserDashBoardGround"
             );
           }
           break;
@@ -298,7 +300,9 @@ const Login: React.FC = () => {
             console.log(type);
             localStorage.setItem("role", role);
             console.log(role);
-            navigate(role === "admin" ? "/Water/Admindashboard" : "/home");
+            navigate(
+              role === "admin" ? "/Water/Admindashboard" : "/waterUserDashboard"
+            );
           }
           break;
 
