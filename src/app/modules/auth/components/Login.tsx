@@ -255,32 +255,50 @@ const Login: React.FC = () => {
         ground: "adminground@gmail.com",
       };
 
+      // Store the type in localStorage
+
+      localStorage.setItem("type", type);
+      console.log(localStorage);
+
       // Service and navigation based on type
       switch (type) {
         case "air":
           userData = await AirService.login(loginData);
-          if (userData && email === adminEmails.air) {
-            navigate("/Air/Homepage");
-          } else {
-            navigate("/Air/Search");
+          if (userData) {
+            const role = email === adminEmails.air ? "admin" : "user";
+            localStorage.setItem("type", type);
+            console.log(type);
+            localStorage.setItem("role", role);
+            console.log(role);
+            navigate(
+              role === "admin" ? "/Air/AdminDashboard" : "/Air/Homepage"
+            );
           }
           break;
 
         case "ground":
           userData = await GroundService.login(loginData);
-          if (userData && email === adminEmails.ground) {
-            navigate("/Ground/AdminDashboard");
-          } else {
-            navigate("/Ground/homepage");
+          if (userData) {
+            const role = email === adminEmails.ground ? "admin" : "user";
+            localStorage.setItem("type", type);
+            console.log(type);
+            localStorage.setItem("role", role);
+            console.log(role);
+            navigate(
+              role === "admin" ? "/Ground/AdminDashboard" : "/Ground/Homepage"
+            );
           }
           break;
 
         case "water":
           userData = await AuthService.login(loginData);
-          if (userData && email === adminEmails.water) {
-            navigate("/Water/Admindashboard");
-          } else {
-            navigate("/home");
+          if (userData) {
+            const role = email === adminEmails.water ? "admin" : "user";
+            localStorage.setItem("type", type);
+            console.log(type);
+            localStorage.setItem("role", role);
+            console.log(role);
+            navigate(role === "admin" ? "/Water/Admindashboard" : "/home");
           }
           break;
 
