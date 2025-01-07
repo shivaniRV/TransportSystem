@@ -7,6 +7,7 @@ const AirHomePage = () => {
     <div className="container mt-4">
       <div className="card">
         <div className="card-header">
+          <h1> This is Air user HomePage</h1>
           <h3 className="card-title">Air Travel Booking Form</h3>
         </div>
         <div className="card-body">
