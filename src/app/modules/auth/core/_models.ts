@@ -5,6 +5,7 @@ export interface AuthModel {
   isAuthenticated: boolean;
 }
 
+
 export interface UserAddressModel {
   addressLine: string
   city: string

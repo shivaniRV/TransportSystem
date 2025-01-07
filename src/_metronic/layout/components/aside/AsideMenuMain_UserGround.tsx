@@ -6,17 +6,17 @@ export function AsideMenuMainUpdatedGroundUser() {
   const intl = useIntl();
   return (
     <>
-      {/* <AsideMenuItem
-        to="/Ground/AdminDashboard"
+      <AsideMenuItem
+        to="/UserDashBoardGround"
         icon="element-11"
-        title="Dashboard"
-      /> */}
+        title="User Dashboard"
+      />
       <div className="menu-item">
         <div className="menu-content pt-8 pb-2">
           {/* <span className='menu-section text-muted text-uppercase fs-8 ls-1'>Jobs and Applicants</span> */}
         </div>
       </div>
-      <AsideMenuItem to="Ground/Search" icon="element-11" title="Book Now" />
+      <AsideMenuItem to="Ground/homepage" icon="element-11" title="Book Now" />
       {/* <AsideMenuItem to="/Ground/bususer" icon="element-11" title="Users" /> */}
       <div className="menu-item">
         {/* <div className='menu-content pt-8 pb-2'>

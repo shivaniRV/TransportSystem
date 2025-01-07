@@ -6,17 +6,17 @@ export function AsideMenuMainUpdatedWaterUser() {
   const intl = useIntl();
   return (
     <>
-      {/* <AsideMenuItem
-        to="/Water/Admindashboard"
+      <AsideMenuItem
+        to="/waterUserDashboard"
         icon="element-11"
-        title="Dashboard"
-      /> */}
+        title="User Dashboard"
+      />
       <div className="menu-item">
         <div className="menu-content pt-8 pb-2">
           {/* <span className='menu-section text-muted text-uppercase fs-8 ls-1'>Jobs and Applicants</span> */}
         </div>
       </div>
-      <AsideMenuItem to="water/search" icon="element-11" title="BookNow" />
+      <AsideMenuItem to="/home" icon="element-11" title="BookNow" />
       {/* <AsideMenuItem to="/Water/Shipuser" icon="element-11" title="Users" /> */}
       <div className="menu-item">
         {/* <div className='menu-content pt-8 pb-2'>
@@ -29,7 +29,7 @@ export function AsideMenuMainUpdatedWaterUser() {
         title="Employees"
       />
       <AsideMenuItem to="Water/Revenue" icon="element-11" title="Revenue" /> */}
-      <AsideMenuItem to="Water/FAQ" icon="element-11" title="FAQ & Queries" />
+      {/* <AsideMenuItem to="Water/FAQ" icon="element-11" title="FAQ & Queries" /> */}
     </>
   );
 }
