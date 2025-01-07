@@ -1,8 +1,10 @@
 export interface AuthModel {
   // api_token: string
   // refreshToken?: string
-
+ 
   isAuthenticated: boolean;
+  email?: string; 
+  type?: string;
 }
 
 
