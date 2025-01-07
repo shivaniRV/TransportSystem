@@ -166,26 +166,22 @@
 
 
 
-
-
-
-
 import React, { useState, useEffect } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import clsx from "clsx";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { AuthService_Ground } from "../../../../../src/api/Service/RegistrationService_Ground";
+import { AuthService_Ground } from "../../../../api/Service/Registrationservice_Ground";
 import { AuthService_Water } from "../../../../../src/api/Service/Registrationservice_Water";
-import { AuthService_Air } from "../../../../api/Service/RegistrationService_Air";
+import { AuthService_Air } from "../../../../api/Service/Registrationservice_Air";
 
 const Registration: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [status, setStatus] = useState<string | null>(null);
   const [selectedService, setSelectedService] = useState<"ground" | "water" | "air">("ground");
 
-  // Validation schema
+  
   const registrationSchema = Yup.object().shape({
     username: Yup.string()
       .min(3, "Minimum 3 symbols")
